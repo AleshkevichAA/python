@@ -5,7 +5,7 @@ price_description = 'цена'
 quantity_description = 'количество'
 measure_description = 'ед.'
 #
-print('Ввода позиции товара, просто нажмите Enter, если все данные ввели')
+print('Ввод позиции товара; просто нажмите Enter, если все данные ввели')
 tovar = 'AnyData'
 counter = 0
 while (True):
