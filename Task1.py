@@ -1,22 +1,42 @@
-# Создать программный файл в текстовом формате, записать в него построчно данные,
-# вводимые пользователем. Об окончании ввода данных будет свидетельствовать пустая
-# строка.
-try:
-    with open("text.txt") as f_obj:
-        f_obj.write('')
-except IOError:
-    print("Произошла ошибка ввода-вывода!")
+# 1. Создать класс TrafficLight (светофор).
+# ● определить у него один атрибут color (цвет) и метод running (запуск);
+# ● атрибут реализовать как приватный;
+# ● в рамках метода реализовать переключение светофора в режимы: красный, жёлтый,
+# зелёный;
+# ● продолжительность первого состояния (красный) составляет 7 секунд, второго
+# (жёлтый) — 2 секунды, третьего (зелёный) — на ваше усмотрение;
+#
+# ● переключение между режимами должно осуществляться только в указанном порядке
+# (красный, жёлтый, зелёный);
+# ● проверить работу примера, создав экземпляр и вызвав описанный метод.
+# Задачу можно усложнить, реализовав проверку порядка режимов. При его нарушении
+# выводить соответствующее сообщение и завершать скрипт.
 
-out_f = open("out_1.txt", "w")
-while True:
-    data =input('Введите строку, пустая строка конец ввода:')
-    if (data==''):
-        out_f.close()
-        break
-    out_f.write(data+'\n')
-out_f.close()
+import time
 
-read_f = open("out_1.txt", "r")
-print(read_f.read())
-read_f.close()
 
+class TrafficLight():
+    __color_list = ['Red', 'Yellow', 'Green']
+    __color = 'Red'
+
+    def running(self):
+        # переключение в цвета
+        while True:
+            if (self.__color == self.__color_list[0]):
+                print('Red')
+                self.__color = self.__color_list[1]
+                time.sleep(7)
+            elif (self.__color == self.__color_list[1]):
+                print('Yellow')
+                self.__color = self.__color_list[2]
+                time.sleep(2)
+            elif (self.__color == self.__color_list[2]):
+                print('Green')
+                self.__color = self.__color_list[0]
+                time.sleep(5)
+            else:
+                print('Непонятное состояние')
+
+
+a = TrafficLight()
+a.running()

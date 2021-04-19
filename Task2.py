@@ -1,31 +1,25 @@
-# 2. Создать текстовый файл (не программно), сохранить в нём несколько строк, выполнить
-# подсчёт строк и слов в каждой строке.
-file_name = 'data2.txt'
+# 2. Реализовать класс Road (дорога).
+# ● определить атрибуты: length (длина), width (ширина);
+# ● значения атрибутов должны передаваться при создании экземпляра класса;
+# ● атрибуты сделать защищёнными;
+# ● определить метод расчёта массы асфальта, необходимого для покрытия всей дороги;
+# ● использовать формулу: длина*ширина*масса асфальта для покрытия одного кв. метра
+# дороги асфальтом, толщиной в 1 см*число см толщины полотна;
+# ● проверить работу метода.
+# Например: 20 м*5000 м*25 кг*5 см = 12500 т.
+
+class Road():
+    __length = 0
+    __width = 0
+
+    def __init__(self, length, width):
+        self.__width = width
+        self.__length = length
+
+    def get_asfalt_mass(self, heigth):
+        return float(self.__length * self.__width * 25 * heigth / 1000)
 
 
-#  Тестовое заполнение файла
-# try:
-#     with open(file_name,'w') as f_obj:
-#         f_obj.write('Введите строку, пустая строка конец ввода:\nпервая\nвторая\nтретья\nчетвертая\nпятая')
-# except IOError:
-#     print("Произошла ошибка ввода-вывода!")
-
-
-def read_func(name='data2.txt'):
-    lines_count = 0
-    words_count = 0
-    with open(name) as f_obj:
-        for line in f_obj:
-            words_count += line.split(' ').__len__()
-            lines_count += 1
-    return lines_count, words_count
-
-
-file_name = input('Введите имя файла: ')
-read_f = open(file_name, "r")
-print('*' * 30, ' Выведем файл -', file_name, '*' * 30)
-print(read_f.read())
-read_f.close()
-# вызовем функцию дающую результат
-lines, words = read_func(file_name)
-print('Результат подсчёта строк: ', lines, ' , слов:', words)
+a = Road(float(input('Введите ширину дороги:')), float(input('Введите длину дороги:')))
+heigth = float(input('Введите толщину асфальта:'))
+print(f'Вес асфальта: {a.get_asfalt_mass(heigth)} т.')
